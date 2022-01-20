@@ -10,3 +10,4 @@ enable_testing()
 
 
 add_subdirectory(robot_description)
+add_subdirectory(test_robot_moveit_config)

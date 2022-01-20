@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:macro name="carriage">
+        <joint name="carriage_joint" type="prismatic">
+            <origin xyz="0 0.06 0" rpy="0 ${0.5*pi} 0 "/>
+            <parent link="base_link"/>
+            <child link="carriage_link"/>
+            <limit effort="150.0" lower="-0.3" upper="0.3" velocity="0.5"/>
+            <axis xyz="0 0 1"/>
+        </joint>
+
+        <link name="carriage_link">
+            <visual>
+                <geometry>
+                    <mesh filename="package://robot_description/meshes/Carriage.STL"/>
+                </geometry>
+            </visual>
+            <collision>
+                <geometry>
+                    <mesh filename="package://robot_description/meshes/Carriage.STL"/>
+                </geometry>
+            </collision>
+        </link>
+    </xacro:macro>
+</robot>

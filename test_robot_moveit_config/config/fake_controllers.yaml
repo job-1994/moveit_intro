@@ -1,0 +1,12 @@
+controller_list:
+  - name: fake_robot_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - carriage_joint
+      - robot_base_joint
+      - robot_arm_joint
+      - robot_forearm_joint
+      - robot_wrist_joint
+initial:  # Define initial robot poses per group
+  - group: robot
+    pose: start

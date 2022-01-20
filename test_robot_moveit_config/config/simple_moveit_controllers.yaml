@@ -1,0 +1,11 @@
+controller_list:
+  - name: arm_position_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - carriage_joint
+      - robot_base_joint
+      - robot_arm_joint
+      - robot_forearm_joint
+      - robot_wrist_joint

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="test_robot">
+
+    <link name="world"/>
+
+    <joint name="base_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="${0.5*pi} 0 0"/>
+        <parent link="world"/>
+        <child link="base_link"/>
+    </joint>
+
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <mesh filename="package://robot_description/meshes/Base.STL"/>
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://robot_description/meshes/Base.STL"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <xacro:include filename="$(find robot_description)/urdf/carriage.urdf.xacro"/>
+    <xacro:carriage/>
+
+        <xacro:include filename="$(find robot_description)/urdf/robot.urdf.xacro"/>
+        <xacro:robot/>
+
+
+</robot>
