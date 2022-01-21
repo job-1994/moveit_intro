@@ -9,6 +9,8 @@
     <xacro:carriage/>
     <xacro:robot/>
 
+    <xacro:include filename="$(find robot_description)/urdf/gazebo_camera.xacro"/>
+
     <link name="world"/>
 
     <joint name="base_joint" type="fixed">
