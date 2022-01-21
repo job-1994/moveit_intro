@@ -1,7 +1,13 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="test_robot">
 
-    <xacro:include filename="$(find robot_description)/urdf/gazebo.xacro" />
+    <xacro:include filename="$(find robot_description)/urdf/gazebo_plugins.xacro"/>
+
+    <xacro:include filename="$(find robot_description)/urdf/carriage.urdf.xacro"/>
+    <xacro:include filename="$(find robot_description)/urdf/robot.urdf.xacro"/>
+
+    <xacro:carriage/>
+    <xacro:robot/>
 
     <link name="world"/>
 
@@ -10,29 +16,6 @@
         <parent link="world"/>
         <child link="base_link"/>
     </joint>
-
-    <link name="base_link">
-        <visual>
-            <geometry>
-                <mesh filename="package://robot_description/meshes/Base.STL"/>
-            </geometry>
-            <material name="light_green">
-                <color rgba="1 0.7 0.7 1.0"/>
-            </material>
-        </visual>
-        <collision>
-            <geometry>
-                <mesh filename="package://robot_description/meshes/Base.STL"/>
-            </geometry>
-        </collision>
-    </link>
-
-    <xacro:include filename="$(find robot_description)/urdf/carriage.urdf.xacro"/>
-    <xacro:carriage/>
-
-        <xacro:include filename="$(find robot_description)/urdf/robot.urdf.xacro"/>
-        <xacro:robot/>
-
 
 </robot>
 
