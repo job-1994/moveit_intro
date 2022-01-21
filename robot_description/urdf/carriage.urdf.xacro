@@ -24,5 +24,14 @@
                 </geometry>
             </collision>
         </link>
+        <transmission name="carriage_trans">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="carriage_joint">
+                <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="carriage_motor">
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
     </xacro:macro>
 </robot>
