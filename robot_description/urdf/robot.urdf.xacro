@@ -194,5 +194,19 @@
 
         <link name="end_effector_link"/>
 
+        <link name="cam_left"/>
+        <joint name="cam_left_joint" type="fixed">
+            <origin xyz="0.0415 0.011 0.0135" rpy="-${0.5*pi} ${0.5*pi} 0"/>
+            <parent link="robot_wrist_link"/>
+            <child link="cam_left"/>
+        </joint>
+
+        <link name="cam_right"/>
+        <joint name="cam_right_joint" type="fixed">
+            <origin xyz="0.0415 0.011 -0.0135" rpy="-${0.5*pi} ${0.5*pi} 0"/>
+            <parent link="robot_wrist_link"/>
+            <child link="cam_right"/>
+        </joint>
+
     </xacro:macro>
 </robot>

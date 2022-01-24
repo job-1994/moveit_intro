@@ -1,15 +1,28 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:property name="fov" value="1.3962634" />
+    <xacro:property name="res_h" value="1080" />
+    <xacro:property name="res_w" value="1920" />
+    <xacro:property name="bayer_pattern" value="R8G8B8" />
+    <xacro:property name="frame_rate" value="60.0" />
 
-    <gazebo reference="end_effector_link">
-        <sensor type="camera" name="camera1">
-            <update_rate>30.0</update_rate>
-            <camera name="head">
-                <horizontal_fov>1.3962634</horizontal_fov>
+    <xacro:property name="hackBaseline" value="0.07" />
+    <xacro:property name="distortionK1" value="0.0" />
+    <xacro:property name="distortionK2" value="0.0" />
+    <xacro:property name="distortionK3" value="0.0" />
+    <xacro:property name="distortionT1" value="0.0" />
+    <xacro:property name="distortionT2" value="0.0" />
+
+    <gazebo reference="cam_left">
+        <sensor type="camera" name="camera_left">
+            <update_rate>${frame_rate}</update_rate>
+            <camera name="cam_left">
+                <pose>0 0 0 0 -${0.5*pi} ${0.5*pi}</pose>
+                <horizontal_fov>${fov}</horizontal_fov>
                 <image>
-                    <width>1920</width>
-                    <height>1080</height>
-                    <format>R8G8B8</format>
+                    <width>${res_w}</width>
+                    <height>${res_h}</height>
+                    <format>${bayer_pattern}</format>
                 </image>
                 <clip>
                     <near>0.02</near>
@@ -27,16 +40,57 @@
             <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
                 <alwaysOn>true</alwaysOn>
                 <updateRate>0.0</updateRate>
-                <cameraName>test/camera</cameraName>
+                <cameraName>camera_left</cameraName>
                 <imageTopicName>image_raw</imageTopicName>
                 <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-                <frameName>camera_link</frameName>
-                <hackBaseline>0.07</hackBaseline>
-                <distortionK1>0.0</distortionK1>
-                <distortionK2>0.0</distortionK2>
-                <distortionK3>0.0</distortionK3>
-                <distortionT1>0.0</distortionT1>
-                <distortionT2>0.0</distortionT2>
+                <frameName>cam_left</frameName>
+                <hackBaseline>${hackBaseline}</hackBaseline>
+                <distortionK1>${distortionK1}</distortionK1>
+                <distortionK2>${distortionK2}</distortionK2>
+                <distortionK3>${distortionK3}</distortionK3>
+                <distortionT1>${distortionT1}</distortionT1>
+                <distortionT2>${distortionT2}</distortionT2>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+    <gazebo reference="cam_right">
+        <sensor type="camera" name="camera_right">
+            <update_rate>${frame_rate}</update_rate>
+            <camera name="cam_right">
+                <pose>0 0 0 0 -${0.5*pi} ${0.5*pi}</pose>
+                <horizontal_fov>${fov}</horizontal_fov>
+                <image>
+                    <width>${res_w}</width>
+                    <height>${res_h}</height>
+                    <format>${bayer_pattern}</format>
+                </image>
+                <clip>
+                    <near>0.02</near>
+                    <far>300</far>
+                </clip>
+                <noise>
+                    <type>gaussian</type>
+                    <!-- Noise is sampled independently per pixel on each frame.
+                         That pixel's noise value is added to each of its color
+                         channels, which at that point lie in the range [0,1]. -->
+                    <mean>0.0</mean>
+                    <stddev>0.007</stddev>
+                </noise>
+            </camera>
+            <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+                <alwaysOn>true</alwaysOn>
+                <updateRate>0.0</updateRate>
+                <cameraName>camera_right</cameraName>
+                <imageTopicName>image_raw</imageTopicName>
+                <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+                <frameName>cam_right</frameName>
+                <hackBaseline>${hackBaseline}</hackBaseline>
+                <distortionK1>${distortionK1}</distortionK1>
+                <distortionK2>${distortionK2}</distortionK2>
+                <distortionK3>${distortionK3}</distortionK3>
+                <distortionT1>${distortionT1}</distortionT1>
+                <distortionT2>${distortionT2}</distortionT2>
             </plugin>
         </sensor>
     </gazebo>
