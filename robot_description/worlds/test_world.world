@@ -1,23 +1,5 @@
 <sdf version='1.7'>
   <world name='default'>
-    <light name='sun' type='directional'>
-      <cast_shadows>1</cast_shadows>
-      <pose>0 0 10 0 -0 0</pose>
-      <diffuse>0.8 0.8 0.8 1</diffuse>
-      <specular>0.2 0.2 0.2 1</specular>
-      <attenuation>
-        <range>1000</range>
-        <constant>0.9</constant>
-        <linear>0.01</linear>
-        <quadratic>0.001</quadratic>
-      </attenuation>
-      <direction>-0.5 0.1 -0.9</direction>
-      <spot>
-        <inner_angle>0</inner_angle>
-        <outer_angle>0</outer_angle>
-        <falloff>0</falloff>
-      </spot>
-    </light>
     <model name='ground_plane'>
       <static>1</static>
       <link name='link'>
@@ -459,18 +441,28 @@
       <pose>1.02294 0.855548 0 0 -0 0</pose>
     </model>
     <state world_name='default'>
-      <sim_time>621 148000000</sim_time>
-      <real_time>0 0</real_time>
-      <wall_time>1642772522 131134775</wall_time>
-      <iterations>0</iterations>
-      <model name='beer'>
-        <pose>-0.054213 1.00639 0.439991 5e-06 1.9e-05 0.419374</pose>
+      <sim_time>1313 872000000</sim_time>
+      <real_time>437 259049821</real_time>
+      <wall_time>1643027573 821325442</wall_time>
+      <iterations>435408</iterations>
+      <model name='Banana for Scale'>
+        <pose>0.090345 1.03197 0.487808 0 -0 0.934555</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose>-0.054211 1.00639 0.554991 5e-06 1.9e-05 0.419374</pose>
+          <pose>0.090345 1.03197 0.487808 0 -0 0.934555</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='beer'>
+        <pose>-0.05431 1.00632 0.440001 2.7e-05 5e-06 0.42372</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>-0.054308 1.00632 0.555001 2.7e-05 5e-06 0.42372</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0.001439 -0.001663 19.5949 0.014467 0.012526 -6e-06</acceleration>
+          <wrench>0.000561 -0.000648 7.64201 0 -0 0</wrench>
         </link>
       </model>
       <model name='bookshelf'>
@@ -484,13 +476,13 @@
         </link>
       </model>
       <model name='coke_can'>
-        <pose>0.232959 0.9754 0.437443 -0.013243 -0.04155 -0.437062</pose>
+        <pose>0.232969 0.975456 0.436722 0.007736 -0.037867 -0.438029</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose>0.232959 0.9754 0.437443 -0.013243 -0.04155 -0.437062</pose>
+          <pose>0.232969 0.975456 0.436722 0.007736 -0.037867 -0.438029</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
+          <acceleration>-0.011109 -0.066521 -0.002641 1.16927 -0.20045 -0.067474</acceleration>
+          <wrench>-0.004332 -0.025943 -0.00103 0 -0 0</wrench>
         </link>
       </model>
       <model name='ground_plane'>
@@ -503,16 +495,72 @@
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <light name='sun'>
-        <pose>0 0 10 0 -0 0</pose>
+      <light name='test_light'>
+        <pose>0.116076 0.09778 0.613117 1.48483 -0 0</pose>
       </light>
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>-2.96089 -1.83307 2.98485 0 0.555642 0.364198</pose>
+        <pose>-0.037822 -1.46791 0.726649 0 0.137797 1.1722</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
     </gui>
+    <light name='test_light' type='spot'>
+      <pose>0.836428 0.679132 1 0 -0 0</pose>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <direction>0 0 -1</direction>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <cast_shadows>0</cast_shadows>
+      <spot>
+        <inner_angle>0.6</inner_angle>
+        <outer_angle>1</outer_angle>
+        <falloff>1</falloff>
+      </spot>
+    </light>
+    <model name='Banana for Scale'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <pose>0 0 0.12 0 -0 1.5708</pose>
+          <geometry>
+            <mesh>
+              <uri>/home/job/.ignition/fuel/fuel.ignitionrobotics.org/mjcarroll/models/banana for scale/3/meshes/Banana.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 0.12 0 -0 1.5708</pose>
+          <geometry>
+            <mesh>
+              <uri>/home/job/.ignition/fuel/fuel.ignitionrobotics.org/mjcarroll/models/banana for scale/3/meshes/Banana.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>-0.492413 2.87711 0 0 -0 0</pose>
+    </model>
   </world>
 </sdf>
